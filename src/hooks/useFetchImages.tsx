@@ -12,7 +12,7 @@ export const useFetchImages = (options: Options) => {
   const [fetchingState, setFetchingState] = useState(FetchingState.Idle);
 
   let url = `https://api.unsplash.com/photos/?client_id=${
-    import.meta.env.VITE_IMAGES_API_KEY
+    import.meta.env.VITE_IMAGES_API_KEY || process.env.IMAGES_API_KEY
   }&page=${options.page || 1}`;
 
   useEffect(() => {
