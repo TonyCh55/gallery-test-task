@@ -1,5 +1,12 @@
 import { DataContext } from "@/store";
-import { useContext, useEffect, useCallback, useState, useRef } from "react";
+import {
+  useContext,
+  useEffect,
+  useCallback,
+  useState,
+  useRef,
+  useMemo,
+} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FetchingState, GalleryItem } from "@/types";
 import { Preloader, ErrorMessage, ButtonIcon } from "@/components";
@@ -22,13 +29,19 @@ export const GalleryItemPage = () => {
     undefined
   );
 
-  const item = images.find((el) => el.id === imageId);
+  const item = useMemo(
+    () => images.find((el) => el.id === imageId),
+    [images, imageId]
+  );
 
   useEffect(() => {
     setCurrentItem(item);
   });
 
-  const currentItemIndex = images.indexOf(currentItem as GalleryItem);
+  const currentItemIndex = useMemo(
+    () => images.indexOf(currentItem as GalleryItem),
+    [currentItem?.id]
+  );
 
   const goToPrevItem = useCallback(() => {
     if (currentItemIndex) {
@@ -62,6 +75,8 @@ export const GalleryItemPage = () => {
     large: { link: currentItem?.urls.raw, resolution: "(2400 x 3600)" },
     original: { link: currentItem?.urls.full, resolution: "(4000 x 6000)" },
   };
+
+  const toggleDownloadMenu = useCallback(() => setShow((prev) => !prev), []);
 
   const downLoadSpecificResolution = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>
@@ -137,7 +152,7 @@ export const GalleryItemPage = () => {
               ref={chooseResolutionBtnRef}
               icon="chevronDown"
               className={s.chevronBtn}
-              onClick={() => setShow((prev) => !prev)}
+              onClick={toggleDownloadMenu}
             />
 
             <ul className={clsx(s.resolutions, show && s.resolutions_show)}>

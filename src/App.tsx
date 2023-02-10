@@ -1,4 +1,4 @@
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 import { useFetchImages } from "@/hooks";
 import { DataContext } from "./store";
 import { RouterProvider } from "react-router-dom";
