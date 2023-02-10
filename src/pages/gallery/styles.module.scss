@@ -1,0 +1,13 @@
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 72px 60px;
+  overflow: auto;
+  gap: 24px !important;
+
+  @media screen and (max-width: 375px) {
+    padding: 40px 0;
+  }
+}

@@ -1,0 +1,228 @@
+.overlay {
+  position: absolute;
+  background: rgba($color: #000000, $alpha: 0.6);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 45px 70px;
+
+  .leftIcon {
+    position: absolute;
+    left: 10px;
+  }
+  .rightIcon {
+    position: absolute;
+    right: 10px;
+  }
+  .crossIcon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.container {
+  background: #fff;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1296px;
+  height: fit-content;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+}
+
+.downloadContainer {
+  &_mobile {
+    display: none;
+  }
+
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  background: #61b174;
+  position: relative;
+  z-index: 100;
+
+  button {
+    cursor: pointer;
+    color: #fff;
+    background: transparent;
+    border: none;
+
+    &:active {
+      background-color: #77d08c;
+    }
+  }
+
+  .downloadBtn {
+    padding: 8px 24px;
+    border-right: 1px solid #77d08c;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .chevronBtn {
+    padding: 3px 5px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  .resolutions {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 238px;
+    display: flex;
+    padding: 12px 0;
+    gap: 4px;
+    flex-direction: column;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.12) 100%
+      ),
+      #121212;
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -100;
+
+    &_show {
+      opacity: 1 !important;
+      z-index: 1 !important;
+      pointer-events: all !important;
+    }
+
+    li {
+      cursor: pointer;
+      text-transform: capitalize;
+      color: #fff;
+      list-style: none;
+      padding: 4px 16px;
+      &:hover {
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.235) 0%,
+            rgba(255, 255, 255, 0.189) 100%
+          ),
+          #121212;
+      }
+    }
+  }
+}
+
+.imgWrapper {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exitButton {
+  color: white;
+  background-color: rgb(245, 109, 109);
+  border-color: transparent;
+  padding: 4px 16px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+@media screen and (max-width: 700px) {
+  .overlay {
+    padding: 0;
+    display: block;
+    flex-direction: column;
+
+    .leftIcon,
+    .crossIcon,
+    .rightIcon {
+      position: relative;
+      height: 32px;
+      width: 32px;
+    }
+
+    .navBtnContainer {
+      position: relative;
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+      min-height: 72px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      bottom: 0;
+    }
+  }
+
+  .container {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+    height: 100%;
+  }
+
+  .header {
+    padding: 24px;
+    padding-bottom: 16px;
+    margin-bottom: 0;
+  }
+  .downloadContainer {
+    display: none;
+
+    &_mobile {
+      display: flex;
+      width: fit-content;
+      margin-top: 32px;
+      margin-bottom: 32px;
+      align-self: center;
+
+      .resolutions {
+        top: -190px;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .imgWrapper {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.noDataPage {
+  text-align: center;
+  padding-top: 32px;
+}
